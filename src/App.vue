@@ -1,5 +1,5 @@
 <template>
-  <div id="app" v-once>
+  <div id="app">
     {{msg}}
     <div v-html="all"></div>
     <div id="change" v-bind:class="{ active: isActive }">sss</div>
@@ -12,10 +12,52 @@
     <div>{{ flow() }}</div>
     <div v-on:click="change">click</div>
     <div @click="change">hahahah</div>
+    <div id="domo">{{ fullName }}</div>
+    <div>{{ seeChange }}</div>
+    <div class="askbox">
+        <p>
+            Ask a yes/no question:
+            <input v-model="question"/>
+        </p>
+        <p>answer: {{ answer }}</p>
+    </div>
+    <div class="sss" v-bind:class="{ active: isActive , 'has': true}">column,row</div>
+    <div v-bind:class="[activeClass, errorClass]">has a change</div>
+    <div v-bind:class="[{active: isActive},errorClass]">ssssss</div>
+    <div v-bind:style="{ color: activeColor }">hahahaha</div>
+    <h1 v-if="ok">Yes</h1>
+    <h1 v-else>No</h1>
+    <div v-if="canSee">Now you see me</div>
+    <div v-else>Now you don't</div>
+    <button v-on:click="changeSee">click</button>
+    <div v-if="type === 'A'">A</div>
+    <div v-else-if="type === 'B'">B</div>
+    <div v-else-if="type === 'C'">C</div>
+    <div v-else>
+        Not A/B/C
+    </div>
+    <button v-on:click="clickChange">clickChange</button>
+    <h1 v-show="ok">Hello!</h1>
+    <ul>
+        <li v-for="(item, index) of items">
+                {{item.message}}--{{index}}
+        </li>
+    </ul>
+    <ul>
+        <li v-for="(value, key, index) in object">
+            {{key}}-{{ value }}-{{index}}
+        </li>
+    </ul>
+    <my-components></my-components>
   </div>
 </template>
-
+<!-- <template>
+    <imput/>
+</template> -->
 <script>
+var My = {
+    template: '<div>newww</div>'
+}
 var apps =  {
   name: 'app',
   data () {
@@ -29,11 +71,35 @@ var apps =  {
       number: 2,
       id: 'assssss',
       ok: true,
+      firstName: 'Foo',
+      lastName: 'Bar',
+      seeChange: '',
+      answer: 'nothing',
+      question: '',
+      isActive: true,
+      activeClass: 'active',
+      errorClass: 'has',
+      activeColor: 'red',
+      ok: true,
+      canSee: true,
+      type: 'A',
+      items: [
+          {message: 'Foo'},
+          {message: 'Bars'}
+      ],
+      object: {
+          FirstName: 'Jphn',
+          LastName: 'Doe',
+          Age: 30,
+      }
         }
     },
     computed: {
         reversedMessage: function(){
             return this.id.split('');
+        },
+        fullName: function(){
+            return this.firstName + ' ' + this.lastName;
         }
     },
     methods: {
@@ -41,10 +107,35 @@ var apps =  {
             return this.id;
         },
         change: function(){
-            this.number = 20;
-            console.log('1111');
+            this.firstName = 'bbb' + this.firstName ;
+        },
+        view:  _.debounce(
+            function(){
+                if(this.question.indexOf('?') === -1){
+                    return;
+                }
+                console.log('answer is new');
+            },500
+        ),
+        changeSee: function(){
+            this.canSee = !this.canSee;
+        },
+        clickChange: function(){
+            this.type = 'B';
         },
     },
+    watch: {
+        firstName: function(val){
+            this.lastName = this.firstName + this.lastName;
+        },
+        question: function (newQuestion){
+            this.answer = newQuestion;
+            this.view();
+        }
+    },
+    components: {
+        'my-components': My
+    }
 }
 export default apps;
 </script>
@@ -82,5 +173,23 @@ li {
 
 a {
   color: #42b983;
+}
+.askbox{
+    width: 500px;
+    height: 200px;
+    background-color: grey;
+    margin: 0 auto;
+    margin-top: 50px;
+    text-align: center;
+}
+.sss{
+    background-color: blue;
+}
+.active{
+    color: red;
+    font-size: 100px;
+}
+.has{
+    font-weight: bold;
 }
 </style>
