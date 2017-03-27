@@ -8,12 +8,15 @@
     <div>{{ message.split('').reverse().join('') }}</div>
     <div>{{ number + 1 }}</div>
     <div v-bind:id="'list-'+ id">sss</div>
-    <div></div>
+    <div>{{ reversedMessage }}</div>
+    <div>{{ flow() }}</div>
+    <div v-on:click="change">click</div>
+    <div @click="change">hahahah</div>
   </div>
 </template>
 
 <script>
-export default {
+var apps =  {
   name: 'app',
   data () {
     return {
@@ -22,13 +25,28 @@ export default {
       isActive: true,
       dynamicId: 'dynamicId',
       someDynamicCondition: true,
-      message: '1234567',
+      message: '12345678',
       number: 2,
-      id: 'a',
+      id: 'assssss',
       ok: true,
-    }
-  }
+        }
+    },
+    computed: {
+        reversedMessage: function(){
+            return this.id.split('');
+        }
+    },
+    methods: {
+        flow: function(){
+            return this.id;
+        },
+        change: function(){
+            this.number = 20;
+            console.log('1111');
+        },
+    },
 }
+export default apps;
 </script>
 
 <style>
