@@ -35,16 +35,41 @@ Vue.component('my-component', {
           counter: 0
       }
   }
-})
+});
+
+Vue.component('button-counter', {
+    template: '<button v-on:click="counts">{{ count }}</button>',
+    data: function (){
+        return {
+            count: 0
+        }
+    },
+    methods: {
+        counts(){
+            this.count = this.count + 1;
+            this.$emit('increment');
+        },
+    
+    }
+});
 new Vue({
   el: '#app',
   data: {
     message: 'Hello Vue!',
     num: 90,
     parentMsg: '',
+    total: 0,
   },
   components: {
       'App': App,
       'my-component': Child,
+  },
+  methods: {
+      imcrementTatal(){
+          this.total = this.total + 1;
+      },
+      change(){
+          console.log('11111');
+      }
   }
 })
