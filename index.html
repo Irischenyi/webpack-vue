@@ -4,16 +4,20 @@
     <meta charset="utf-8">
     <title>my-project</title>
   </head>
+  <link href="https://unpkg.com/animate.css@3.5.1/animate.min.css" rel="stylesheet" type="text/css">
   <body>
     <div id="app">
-        <my-component v-bind:num-message = "parentMsg"></my-component>
+        <!-- <my-component v-bind:num-message = "parentMsg"></my-component> -->
         <!-- <app></app> -->
-        <div>{{ message }}</div>
-        <div>{{num}}</div>
-        <input v-model="parentMsg"></input>
-        <p>{{total}}<p>
-        <button-counter v-on:click.native="change"></button-counter>
-        <button-counter v-on:increment="imcrementTatal"></button-counter>
+        <!-- <div>{{ message }}</div> -->
+        <!-- <div>{{num}}</div> -->
+        <!-- <input v-model="parentMsg"></input> -->
+        <!-- <p>{{total}}<p> -->
+        <!-- <button-counter v-on:click.native="change"></button-counter> -->
+        <!-- <button-counter v-on:increment="imcrementTatal"></button-counter> -->
+        <!-- <second></second> -->
+        <!-- <third v-bind:messages = "message"></third> -->
+        <animation></animation>
     </div>
     <script src="https://unpkg.com/axios@0.12.0/dist/axios.min.js"></script>
     <script src="https://unpkg.com/lodash@4.13.1/lodash.min.js"></script>

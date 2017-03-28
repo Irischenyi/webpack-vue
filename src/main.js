@@ -1,5 +1,10 @@
 import Vue from 'vue'
 import App from './App.vue'
+import Second from './Second.vue'
+import Third from './Third.vue'
+import Animation from './Animation.vue'
+
+// import An1 from './component/An1.vue'
 
 let Child = {
     template: '<div><div>click</div><div>{{counter}}</div></div>',
@@ -49,7 +54,7 @@ Vue.component('button-counter', {
             this.count = this.count + 1;
             this.$emit('increment');
         },
-    
+
     }
 });
 new Vue({
@@ -63,6 +68,10 @@ new Vue({
   components: {
       'App': App,
       'my-component': Child,
+      'Second': Second,
+      'Third': Third,
+      'Animation': Animation,
+    //   'An1': An1,
   },
   methods: {
       imcrementTatal(){
