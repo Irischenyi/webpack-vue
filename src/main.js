@@ -2,7 +2,9 @@ import Vue from 'vue'
 import App from './App.vue'
 import Second from './Second.vue'
 import Third from './Third.vue'
-import Animation from './Animation.vue'
+// import Animation from './Animation.vue'
+import Price from './Price.vue'
+import Component1 from './Component1.vue'
 
 // import An1 from './component/An1.vue'
 
@@ -33,6 +35,8 @@ let Child = {
 let data = {
     counter: 0
 }
+
+
 Vue.component('my-component', {
   template: '<button v-on:click="counter = counter + 1">{{counter}}</button>',
   data: function() {
@@ -57,6 +61,13 @@ Vue.component('button-counter', {
 
     }
 });
+
+Vue.component('childs', {
+    props: ['mess'],
+    template: '<span> {{ mess }} </span>'
+});
+
+
 new Vue({
   el: '#app',
   data: {
@@ -70,7 +81,9 @@ new Vue({
       'my-component': Child,
       'Second': Second,
       'Third': Third,
-      'Animation': Animation,
+    //   'Animation': Animation,
+      'Price': Price,
+      'Component1': Component1
     //   'An1': An1,
   },
   methods: {
@@ -79,6 +92,6 @@ new Vue({
       },
       change(){
           console.log('11111');
-      }
+      },
   }
 })
