@@ -70,6 +70,29 @@ Vue.component('childs', {
     template: '<span> {{ mess }} </span>'
 });
 
+Vue.component('anchored-heading', {
+  render: function (createElement) {
+    return createElement(
+      'h' + this.level,   // tag name 标签名称
+      this.$slots.default // 子组件中的阵列
+    )
+  },
+  // template:' <div>sssss<div v-on:click="clickMethod">click</div>\
+  // </div>\
+  // ',
+  props: {
+    level: {
+      type: Number,
+      required: true
+    }
+  },
+  methods: {
+      clickMethod(){
+          console.log(this.$slots.default);
+
+      }
+  }
+})
 
 new Vue({
   el: '#app',

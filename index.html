@@ -48,7 +48,36 @@
         <button @click="gotoNext">next</button>
         <button @click="gotoBefore">before</button> -->
         <render></render>
+        <anchored-heading :level="2"><div>dddddd</div></anchored-heading>
     </div>
+    <script type="text/x-template" id="anchored-heading-template">
+      <!-- <div>
+        <h1 v-if="level === 1">
+            1
+          <slot></slot>
+        </h1>
+        <h2 v-if="level === 2">
+            2
+          <slot></slot>
+        </h2>
+        <h3 v-if="level === 3">
+            3
+          <slot></slot>
+        </h3>
+        <h4 v-if="level === 4">
+            4
+          <slot></slot>
+        </h4>
+        <h5 v-if="level === 5">
+            5
+          <slot></slot>
+        </h5>
+        <h6 v-if="level === 6">
+            6
+          <slot></slot>
+        </h6>
+      </div> -->
+    </script>
     <script src="https://unpkg.com/axios@0.12.0/dist/axios.min.js"></script>
     <script src="https://unpkg.com/lodash@4.13.1/lodash.min.js"></script>
     <script src="/dist/build.js"></script>
