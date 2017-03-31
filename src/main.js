@@ -5,6 +5,9 @@ import Third from './Third.vue'
 // import Animation from './Animation.vue'
 import Price from './Price.vue'
 import Component1 from './Component1.vue'
+import Silder from './Silder.vue'
+import Silder2 from './Silder2.vue'
+import Render from './Render.vue'
 
 // import An1 from './component/An1.vue'
 
@@ -72,9 +75,11 @@ new Vue({
   el: '#app',
   data: {
     message: 'Hello Vue!',
-    num: 90,
+    num: 0,
     parentMsg: '',
     total: 0,
+    sliderNum: 2,
+    time: 100
   },
   components: {
       'App': App,
@@ -83,7 +88,10 @@ new Vue({
       'Third': Third,
     //   'Animation': Animation,
       'Price': Price,
-      'Component1': Component1
+      'Component1': Component1,
+      'Silder': Silder,
+      'Silder2': Silder2,
+      'Render': Render,
     //   'An1': An1,
   },
   methods: {
@@ -91,7 +99,15 @@ new Vue({
           this.total = this.total + 1;
       },
       change(){
-          console.log('11111');
+        //   console.log(this.nusliderNumm);
       },
+      gotoNext() {
+          this.sliderNum = this.sliderNum + 1;
+          this.change();
+      },
+      gotoBefore(){
+           this.sliderNum = this.sliderNum -1;
+           this.change();
+      }
   }
 })
