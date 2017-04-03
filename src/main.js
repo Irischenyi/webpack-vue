@@ -8,6 +8,7 @@ import Component1 from './Component1.vue'
 import Silder from './Silder.vue'
 import Silder2 from './Silder2.vue'
 import Render from './Render.vue'
+import Maps from './Maps.vue'
 
 // import An1 from './component/An1.vue'
 
@@ -73,8 +74,20 @@ Vue.component('childs', {
 Vue.component('anchored-heading', {
   render: function (createElement) {
     return createElement(
-      'h' + this.level,   // tag name 标签名称
-      this.$slots.default // 子组件中的阵列
+      'div',
+      {
+          style: {
+              color: 'blue',
+              fontSize: '22px'
+          },
+          on: {
+              click: this.clickHandler
+          }
+      },
+      [
+          createElement('h1','helloworld'),
+          'bar'
+      ]
     )
   },
   // template:' <div>sssss<div v-on:click="clickMethod">click</div>\
@@ -89,9 +102,11 @@ Vue.component('anchored-heading', {
   methods: {
       clickMethod(){
           console.log(this.$slots.default);
-
+      },
+      clickHandler(){
+          console.log('ssssss');
       }
-  }
+  },
 })
 
 new Vue({
@@ -102,7 +117,8 @@ new Vue({
     parentMsg: '',
     total: 0,
     sliderNum: 2,
-    time: 100
+    time: 100,
+    index: 0,
   },
   components: {
       'App': App,
@@ -116,13 +132,20 @@ new Vue({
       'Silder2': Silder2,
       'Render': Render,
     //   'An1': An1,
+      'Maps': Maps
   },
   methods: {
       imcrementTatal(){
           this.total = this.total + 1;
       },
       change(){
-        //   console.log(this.nusliderNumm);
+         const length = this.$refs.slider2.$el.children[0].children.length;
+         if(this.sliderNum == length+1){
+             this.sliderNum = 1;
+         }
+         if(this.sliderNum == 0){
+             this.sliderNum = length;
+         }
       },
       gotoNext() {
           this.sliderNum = this.sliderNum + 1;
@@ -131,6 +154,9 @@ new Vue({
       gotoBefore(){
            this.sliderNum = this.sliderNum -1;
            this.change();
+      },
+      xxxHandler() {
+          this.index = 2;
       }
   }
 })
