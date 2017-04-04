@@ -7,6 +7,7 @@ import Price from './Price.vue'
 import Component1 from './Component1.vue'
 import Silder from './Silder.vue'
 import Silder2 from './Silder2.vue'
+// import Silder3 from './Silder3.vue'
 import Render from './Render.vue'
 import Maps from './Maps.vue'
 
@@ -116,7 +117,7 @@ new Vue({
     num: 0,
     parentMsg: '',
     total: 0,
-    sliderNum: 2,
+    sliderNum: 0,
     time: 100,
     index: 0,
   },
@@ -140,11 +141,11 @@ new Vue({
       },
       change(){
          const length = this.$refs.slider2.$el.children[0].children.length;
-         if(this.sliderNum == length+1){
-             this.sliderNum = 1;
+         if(this.sliderNum === length){
+             this.sliderNum = 0;
          }
-         if(this.sliderNum == 0){
-             this.sliderNum = length;
+         if(this.sliderNum == -1){
+             this.sliderNum = length-1;
          }
       },
       gotoNext() {
